@@ -39,17 +39,19 @@
 
 [![Product Name Screen Shot][project-screenshot]](https://assignment1-eicot)
 
-The Singapore Population project is to visualize the raw data of population with Leaflet Map and ApexCharts. The project lay outs population information categorized by gender, age and residence property types, and reveal the demographic structure of Singapore based on planning area in 2022. It also provides information chart to better analyze the population trend by developing line chart with different categories such as growth rate, birth rate, death rate and etc from 1960 to 2021. The project will help researchers and city planning organization for better understanding and clear visualization of population across the country.
+The MOTO Land website is created for motorcycle enthusiasts to provide valuable information of various motorcycles. With so many different models and types of motorcycles available, it can be overwhelming for someone who is looking to purchase one. </br>
+With the website that offers detailed and honest reviews of various motorcycles can help consumers make informed decisions about which model is right for them. Additionally, motorcycle enthusiasts often enjoy reading reviews to learn about the latest trends and features in the industry. </br>
+The website can also be a great platform for connecting with like-minded individuals and building a community of motorcycle enthusiasts. By sharing your experiences and knowledge about different models, you can help others make informed decisions and foster a sense of camaraderie within the motorcycle community. </br>
+Overall, creating this MOTO Land website for motorcycle reviews can be a rewarding and valuable endeavor for both the creator and the users who benefit from the information provided.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Built With
 
-The list below is used for developing map and chart.
-
-* [Leaflet][leaflet-url]
-* [ApexCharts][ApexCharts-url]
+The below technologies are used to create the MOTO Land Web;
+* [Vue.js][vuejs-url]
+* [MongDB][mongodb-url]
 * [Axios][Axios-url]
 * [Bootstrap][Bootstrap-url]
 
@@ -58,9 +60,8 @@ The list below is used for developing map and chart.
 
 ### Data Sources
 
-* Singapore Residents by Planning Area Subzone, Age Group, Sex and Type of Dwelling, June 2011-2019. This data set is available at [Singapore Department of Statistics](https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data).
-* Master Plan 2014 Planning Subzone GIS data. This data set is available at [Data.gov.sg](https://data.gov.sg/dataset/master-plan-2014-subzone-boundary-web).
-* Overall Population Information from 1960 to 2021. This data set is available at [The World Bank(World Development Indicators)](https://databank.worldbank.org/source/world-development-indicators).
+* Motorcycle Specifications Dataset from 1894 to present day. This data set is available at [Kaggle(Motorcycle Specifications Dataset)](https://www.kaggle.com/datasets/emmanuelfwerr/motorcycle-technical-specifications-19702022).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -376,9 +377,9 @@ There are also three sections to choose Chart options on right top of web page:
 
 [project-screenshot]: images/population1.jpg
 [geojsonio]: images/geojsonio.png
-[leaflet-url]: https://leafletjs.com
-[ApexCharts-url]: https://apexcharts.com
-[Axios-url]: https://apexcharts.com
+[vuejs-url]: https://vuejs.org/
+[mongodb-url]: https://www.mongodb.com/
+[Axios-url]: https://axios-http.com/
 [Bootstrap-url]:https://getbootstrap.com
 
 
