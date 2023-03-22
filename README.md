@@ -2,34 +2,32 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+<summary>Table of Contents</summary>
   <ol>
     <li>
       <a href="#project-introduction">Project Introduction</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
-        <li><a href="#data-sources">Data Sources</a></li>
+        <li><a href="#data-source">Data Source</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#setting-up-leaflet">Setting Up Leaflet</a></li>
-        <li><a href="#setting-up-apexcharts">Setting Up ApexCharts</a></li>
-        <li><a href="#installing-bootstrap">Installing Bootstrap</a></li>
+        <li><a href="#data-preparation-and-loading">Data Preparation and Loading</a></li>
+        <li><a href="#setting-up-front-end">Setting Up Front-End</a></li>
+        <li><a href="#setting-up-back-end">Setting Up Back-End</a></li>
       </ul>
     </li>
     <li>
-      <a href="#data-preparation-and-loading">Data Preparation and Loading</a>
+      <a href="#crud-for-front-end-and-back-end">CRUD for Front-End and Back-End</a>
       <ul>
-        <li><a href="#data-preparation">Data Preparation</a></li>
-        <li><a href="#data-loading">Data Loading</a></li>
+        <li><a href="#front-end-crud-setup">Front-End CRUD Setup</a></li>
+        <li><a href="#back-end-crud-setup">Back-End CRUD Setup</a></li>
       </ul>
     </li>
-    <li><a href="#creating-map-layers">Creating Map Layers</a></li>
-    <li><a href="#creating-charts">Creating Charts</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#references">REFERENCES</a></li>
+    <li><a href="#project-setup">Project Setup</a></li>
   </ol>
 </details>
 
@@ -37,30 +35,31 @@
 <!-- ABOUT THE PROJECT -->
 ## Project Introduction
 
-[![Product Name Screen Shot][project-screenshot]](https://assignment1-eicot)
-
-The Singapore Population project is to visualize the raw data of population with Leaflet Map and ApexCharts. The project lay outs population information categorized by gender, age and residence property types, and reveal the demographic structure of Singapore based on planning area in 2022. It also provides information chart to better analyze the population trend by developing line chart with different categories such as growth rate, birth rate, death rate and etc from 1960 to 2021. The project will help researchers and city planning organization for better understanding and clear visualization of population across the country.
+[Web Page Link](https://assignment2-front-end) </br>
+The MOTO Land website is created for motorcycle enthusiasts to provide valuable information of various motorcycles. With so many different models and types of motorcycles available, it can be overwhelming for someone who is looking to purchase one. </br>
+With the website that offers detailed and honest reviews of various motorcycles can help consumers make informed decisions about which model is right for them. Additionally, motorcycle enthusiasts often enjoy reading reviews to learn about the latest trends and features in the industry. </br>
+The website can also be a great platform for connecting with like-minded individuals and building a community of motorcycle enthusiasts. By sharing your experiences and knowledge about different models, you can help others make informed decisions and foster a sense of camaraderie within the motorcycle community. </br>
+Overall, creating this MOTO Land website for motorcycle reviews can be a rewarding and valuable endeavor for both the creator and the users who benefit from the information provided.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Built With
 
-The list below is used for developing map and chart.
-
-* [Leaflet][leaflet-url]
-* [ApexCharts][ApexCharts-url]
+The technologies below are used to create the MOTO Land Web;
+* [Vue.js][vuejs-url]
+* [MongDB][mongodb-url]
+* [Express.js][Expressjs-url]
 * [Axios][Axios-url]
 * [Bootstrap][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Data Sources
+### Data Source
 
-* Singapore Residents by Planning Area Subzone, Age Group, Sex and Type of Dwelling, June 2011-2019. This data set is available at [Singapore Department of Statistics](https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data).
-* Master Plan 2014 Planning Subzone GIS data. This data set is available at [Data.gov.sg](https://data.gov.sg/dataset/master-plan-2014-subzone-boundary-web).
-* Overall Population Information from 1960 to 2021. This data set is available at [The World Bank(World Development Indicators)](https://databank.worldbank.org/source/world-development-indicators).
+* Motorcycle Specifications Dataset from 1894 to present day. This data set is available at [Kaggle(Motorcycle Specifications Dataset)](https://www.kaggle.com/datasets/emmanuelfwerr/motorcycle-technical-specifications-19702022).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,318 +67,284 @@ The list below is used for developing map and chart.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Setting Up Leaflet
-
-* The latest stable Leaflet release is available on several CDN’s — to start using it straight away, place this in the head of your HTML code:
-  ```sh
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-  ```
-
-* Creating base map for Singapore
-  ```sh
-  const singapore = [1.34096, 103.8198]; //Singapore latlong
-  const map = L.map("map").setView(singapore, 12);
-
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-  maxZoom: 18,
-  id: 'mapbox/streets-v11',
-  tileSize: 512,
-  zoomOffset: -1,
-  accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token}).addTo(map);
-  ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Setting Up ApexCharts
-
-* Direct include <script> in your html
-  ```sh
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Installing Bootstrap
-
-* Include Bootstrap’s CSS
-  ```sh
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  ```
-* Include Bootstrap’s JS
-  ```sh
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-    oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 <!-- Data Preparation and Loading -->
-## Data Preparation and Loading
+### Data Preparation and Loading
 
-### Data Preparation
-
-* Data are availabe in .xlsx/.xls or csv format and need to be converted into GeoJSON or JSON files
-  * Converting to GeoJSON
-    1.  Data are downloaded and filtered by population gender, age and properties type for each planning area and sub zones.
-    2.  GeoJSON file with Singapore Sub Zones Coordinates Plan is downloaded.
-    3.  Once filtered data are ready from Step 1, load data manually into GeoJSON file using [geojson.io](https://geojson.io/#map=10.34/1.3147/103.8471).(As shown in below photo)
-    4.  Upload the updated GeoJSON for project
-       ![gejsonio](images/gejsonio.png)
-       
-   * Converting data to JSON file is straight forward by using available online converter after csv or xls file is downloaded (Ensure the csv/xls file is in correct format)
+* Data downloaed from Kaggle.com are availabe in csv format and filtered to 20 samples for this project.
+* The sample data is uploaded to MongoDB Compass to reflect in MongoDB. MongoDB Compass can be downloaded [here](https://www.mongodb.com/try/download/shell).
+    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Setting Up Front-End -->
+### Setting Up Front-End
 
-### Data Loading
+The front-end is mainly implemented by using Vuejs, JavaScript framework for building interactrive user interface. Axios, the JavaScript library is also used for making HTTP requests from a back-end server and HTML, CSS and Bootstrap are used to create responsive and attractive user interface designs. </br>
 
-* Load data from GeoJSON file to Leaflet map using "axios.get" and "L.geoJSON"
-  ```sh
-  async function loadData() {
+Following setups for reference:
 
-  const response = await axios.get("singaporePopulation2022.geojson");
+#### Setup for Vue
+```
+npm install -g @vue/cli
+```
+```
+vue create .
+```
 
-  L.geoJson(response.data, {
-    style: {...},
-    onEachFeature: {...}
-      }).addTo(singaporePopulationLayer)
-      }
-  loadData(); //Call loadData function
-  ```
-
-* Load data from JSON file to ApexChart using "axios.get" and 
-  ```sh
-  async function getData() {
-  const response = await axios.get("singaporePopulationTable.json");
-  return response.data;}
-
-  getData(); //Call getData function
-  ```
-  
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- Creating Map Layers -->
-## Creating Map Layers
-The map consists of multiple layers based on population categories and different type of views. It also contains one search option, information box when mouse hover over a sub zone and one legend for population number with color. 
-
-  1. Adding Layers to Map
-  ```sh
-  const singaporePopulationLayer = L.layerGroup().addTo(map);
-  let overLayers = {
-  "Overall Resident Population": singaporePopulationLayer}
-  L.control.layers(overLayers).addTo(map);
-  ```
-  
-  2. Adding innerHTML inside Map
-  * Adding Info Box
-  ```sh
-  const info = L.control();
-  info.onAdd = function() {
-  this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
-  this.update();
-  return this._div;};
-  // method that we will use to update the control based on feature properties passed
-  info.update = function(props) {
-  this._div.innerHTML =
-    '<h4>Total Resident Population</h4>' +
-    (props ? '<b>' +
-      "Planning Area : " + props.planningArea + '</b><br />' +
-      "Sub Zone : " + props.subZone + '</b><br />' +
-      props.totalPopulation
-      : 'Mouse hover over a sub zone');};
-  info.addTo(map);
-  ```
-  
-  * Adding Legend
-  ```sh
-  const legend = L.control({ position: "bottomright" });
-  legend.onAdd = function() {
-  const div = L.DomUtil.create("div", "info legend"),
-  grades = [0, 10000, 20000, 30000, 40000, 50000];
-
-  // loop through density intervals and generate a label with a colored square for each   interval
-  for (var i = 0; i < grades.length; i++) {
-    div.innerHTML +=
-      // '<h4>Singapore Population</h4>'+ '</b><br />' + 
-      '<i style="background:' + colorPop(grades[i] + 1) + '"></i> ' +
-      grades[i] + (grades[i + 1] ? ' - ' + grades[i + 1] + '<br>' : '+');
+   * Create project in current directory? Y
+   * Please pick a preset. Vue3
+   * Pick the package manager to use when installing dependencies: Use yarn
+   
+##### Create a file named vue.config.js and paste in the following lines:
+```
+module.exports = {
+  // options...
+  devServer: {
+    disableHostCheck: true
   }
-  return div;};
-  legend.addTo(map);
-  ```
-  3. Adding Markers to the center of polygon
-  ```sh
-  onEachFeature: function(feature, layer) {
-
-      if (feature.geometry.type === "MultiPolygon") {
-        var center = layer.getBounds().getCenter();
-        var marker = L.marker(center, { icon: markerIcon });
-        // console.log(marker)
-        marker.addTo(polygonCenter)
-      }}
-  ```
-  
-  4. Adding Search Control to Map
-  ```sh
-  const searchControl = new L.Control.Search({
-    layer: singaporePopulationLayer,
-    propertyName: 'subZone'},
-    moveToLocation: function(latlng, title, map) {
-      //map.fitBounds( latlng.layer.getBounds() );
-      var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-      map.setView(latlng, zoom); // access the zoom
     }
-  });
-  searchControl.on('search:locationfound', function(e) {
-    e.layer.setStyle({ color: '#0f0' });
-    if (e.layer._popup)
-      e.layer.openPopup();
+```
 
-  }).on('search:collapsed', function(e) {
-    featuresLayer.eachLayer(function(layer) {	//restore feature color
-      featuresLayer.resetStyle(layer);
-    });
-  });
-  map.addControl(searchControl);}  //inizialize search control
-  ```
+#### Installing Bootstrap
+```
+yarn add bootstrap
+```
+```
+yarn add bootstrap-vue
+```
+```
+yarn add vue3-bootstrap5
+```
+##### Following codes to be added in main.js under src folder
+```
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+```
+
+#### Installing Axios
+```
+yarn add axios
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Setting Up Back-End -->
+### Setting Up Back-End
+The separate github repository is created to setup back-end server to connect to MongoDB server. </br>
+Following setups for reference:
+```
+npm install express
+```
+```
+npm install cors
+```
+```
+npm install mongodb
+```
+##### Create a file named .env and paste in the following lines (to change usernamne and password accordingly):
+```
+MONGO_URI = mongodb+srv://<username>:<password>@cluster0.tgaopw0.mongodb.net
+```
+##### Following codes to be added in index.js
+```
+const express = require('express');
+const cors = require('cors');
+const mongodb = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
+const MongoClient = mongodb.MongoClient;
+const dotenv = require('dotenv');
+dotenv.config();
+
+let app = express();
+app.use(express.json());
+app.use(cors());
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- Creating Charts -->
-## Creating Charts
-Charts are created using ApexCharts and div inside "map" container. There are total 3 charts displayed and provide comparison information population.
+<!-- CRUD for Front-End and Back-End -->
+## CRUD for Front-End and Back-End
+CRUD stands for Create, Read, Update, and Delete, which are the basic functions required for managing data in a website or a server:
+- Create: The create function enables users to add new data to server through webpage
 
-  1. Transform to useful data for chart
+- Read: The read function allows users to access and view data that has already been created.
+
+- Update: The update function allows users to modify existing data.
+
+- Delete: The delete function enables users to remove data from a server.
+
+<!-- Front-End CRUD Setup -->
+### Front-End CRUD Setup
+  1. Create Data to Server from Front-End using axios.post
   ```sh
-  function transformData1(data) {
-  const population = data.map(function(dataPoint) { //Assign dataPoint with .map to call year and its population 
-    return {
-      "pop": dataPoint.populationTotal,
-      "year": dataPoint.year}
+  methods: {
+    processAdd: async function () {
+        await axios.post(API_URL + "/specification", {
+          Brand: this.Brand,
+          CoolingSystem: this.CoolingSystem,
+          ColorOptions: this.ColorOptions.split(","), //to add string into array
+        });
+    },
+  }
+  ```
+  2. Read Data from Server at Front-End using axios.get
+  ```sh
+  mounted: async function () {
+    let response = await axios.get(API_URL + "/specification/" + this.cycleId);
+    this.allCycles = response.data;
+    this.Brand = response.data.Brand;
+  }
+  ```
+  3. Update Data to Server through Front-End using axios.patch
+  ```sh
+ methods: {
+    processUpdate: async function (cycleId) {
+      await axios.patch(API_URL + "/specification/" + this.cycleId, {
+        Brand: this.Brand,
+        Model: this.Model,
+        ColorOptions: this.ColorOptions.split(","), //to update string to array
+      });
+    },
+  }
+  ```
+   4. Delete Data from Server using axios.delete
+  ```sh
+ methods: {
+    remove: async function (cycleId) {
+      this.$emit("remove-cycle", cycleId);
+      await axios.delete(API_URL + "/specification/" + this.cycleId);
+    }
+    }
+  ```
+  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Back-End CRUD Setup -->
+### Back-End CRUD Setup
+#### Connecting to MongoDB server
+```sh
+  async function connect() {
+  const mongo_url = process.env.MONGO_URI;
+  let client = await MongoClient.connect(mongo_url, {
+    "useUnifiedTopology": true
   })
-  for (let dataPoint of population) {
-    const pop = dataPoint.pop;
-    const years = dataPoint.year;
-
-    series1.push({
-      x: dataPoint.year,
-      y: dataPoint.pop})}
-
-  return series1;
-  }
+  let db = client.db("motorcycle");
+  console.log("database connected");
+  return db;
+}
   ```
-     
-  2. Assigning data to Charts in "graph.js"
+
+  1. Create Data to MongoDB using app.post
   ```sh
-  window.addEventListener("DOMContentLoaded", async function() {
-  const data = await getData("data.js");
-  function drawchart1() {
-    const options = {
-      chart: {
-        foreColor: "#ccc",
-        type: "line",
-        height: "330"},
-      series: [],
-      title: {
-        text: "Population (1960 - 2021)"},
+  app.post('/specification', async (req, res) => {
+    let items = await db.collection('specification').insertOne({
+      Brand: req.body.Brand,
+      Engine: {//to create new objects dataset 
+        Bore_mm: req.body.Bore,
+        CoolingSystem: req.body.CoolingSystem}
+    })
+    res.json(items);
+  })
+  ```
+  2. Read Data from MongoDB using app.patch
+  ```sh
+  app.get('/specification', async (req, res) => {
+    let items = await db.collection('specification').find().toArray();
+    res.json(items)
 
-      //x-axis dats are congested, adjust interval to show clearer
-      xaxis: {
-        type: "category",
-        tickAmount: 5},
-
-      //Data are in million, in the y-axis divide by 1e3 to limit the number of digits
-      yaxis: {
-        labels: {
-          formatter: function(val) { return (val / 1e3).toFixed(0); }
-        },
-        "title": {
-          "text": "(in thousands)",
-          "align": "left",
-          style: {
-            fontSize: "10px",
-            fontWeight: "normal",
-            color: "white"}}},
-      // what to show there is no data
-      noData: {
-        "text": "Please select below categories"
+  })
+  ```
+  3. Update particualr Data to MongoDB using app.patch
+  ```sh
+ app.patch('/specification/:id', async (req, res) => {
+    let results = await db.collection('specification').updateOne({
+      '_id': new ObjectId(req.params.id),
+    }, {
+      '$set': {
+        Brand: req.body.Brand,
+        'Engine.Bore_mm': req.body.Bore, //to update object data
+        'Engine.CoolingSystem': req.body.CoolingSystem,
+        '
       }
-
-    }
-
-    // create the chart
-    const chart = new ApexCharts(document.querySelector("#chart1"), options);
-
-    // render the chart
-    chart.render()
-
-
-    // display the loaded data as a series in the chart
-    chart.updateSeries([{
-      'name': 'Population',
-      'data': series1}])}
-    drawchart1()})
-  ```  
+    })
+    res.json({
+      'status': true
+    })
+  })
+  ```
+   4. Delete Data from MongoDB using app.delete
+  ```sh
+ app.delete('/specification/:id', async (req, res) => {
+    let results = await db.collection('specification').deleteOne({
+      '_id': new ObjectId(req.params.id)
+    })
+    res.json({
+      'message': 'Success'
+    })
+  })
+  ```
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-  [Web Page Link](https://assignment1-eicot.eicot.repl.co)
-  ![screenshot](images/screenshot.png)
-  In this view, the base layers are divided into default view, terrain view and night view, and it is displayed at right top of the map. Search button is placed on the left top and can be used to search Sub Zones name in Singapore. It will direct to the location and zoom it in the center of the map. 
+  [Web Page Link](https://assignment2-front-end)
   
-  ![screenshot](images/screenshot1.png)
-In this plot view, overlay layers are shown as below:
+  The MOTO Land motorcycle review website is categorised into 4 parts:
+   1. Home Page: This is the main page of the website and contains an overview of the website's content and purpose. The home page features a selection of the most popular motorcycle models and have links to the other pages of the website.
+   <img width="1111" alt="homepage" src="https://user-images.githubusercontent.com/108671817/226785347-fce60c47-10b0-4f14-8802-5a42a4d0aa90.png">
 
-  * Overall Resident Population
-  * Female Resident Population
-  * Male Resident Population
-  * Resident Population Aged Below 5 Years
-  * Resident Population Aged 65 Years and Over
-  * Resident Population Staying in HDB Flats
-  * Resident Population Staying in Condominium
-  * Resident Population Staying in Landed Properties
+   2. Detailed Specification Page: This page contains in-depth technical specifications of a particular motorcycle model. It includes details such as the engine type, displacement, horsepower, torque, transmission, fuel system, suspension, brakes, wheels and tires, dimensions, weight, and more. The page also includes photo of the motorcycle along with user reviews, edit and delete button.
+   <img width="1111" alt="detailspage" src="https://user-images.githubusercontent.com/108671817/226785805-54d625a7-587a-4a36-bcb2-5c1e9cfb420e.png">
 
-Lastly, the markers layer for sub zones is added to location the center of the zones. By viewing the above layers, user will be able to clearly identify the most populated area and the least area based on gender, ages and type of residence. Additionally, the Legend on the right bottom will state the number of people staing in sub zones based on coloring.
 
-There are also three sections to choose Chart options on right top of web page:
+   3. Edit Page: This page allows user to modify the content of the website, such as adding or editing motorcycle technical information and specification. The edit page also includes a form for entering new content, as well as options for adding images, and more.
+   <img width="1111" alt="editpage" src="https://user-images.githubusercontent.com/108671817/226786183-69145aa3-eb5a-4e68-bc07-37f3c69d1035.png">
 
-  1. Population (1960 - 2021): It provides tracking information of total population, female/male population and population ages 0-14, 15-64 and 65+ from 1960 to 2021
-  2. Population Rate (1960 - 2021): Similarly, it shows annual population growth and trend of birth rate, fertility rate and death rate
-  3. Overview: It illustrates clear view of recent overall population and annual growth rate showing constant growth from 2012 to 2020 and declined in 2021.
+
+   4. Add New Page: This page is similar to the Edit Page, but instead of modifying existing content, it allows users to add new content to the website. Users is able to submit their own motorcycle technical specification.
+  <img width="1111" alt="addpage" src="https://user-images.githubusercontent.com/108671817/226786494-6ca6772c-0976-4b27-bec4-119ff623ed27.png">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- REFERENCES -->
-## REFERENCES
+<!-- Project Setup -->
+## Project Setup
+```
+npm install
+```
 
-* Provides Animated Marker Clustering functionality for Leaflet, a JS library for interactive maps.The file is available at [Leaflet Marker Cluster](https://github.com/Leaflet/Leaflet.markercluster)
-* A Leaflet control that search markers/features location by custom property. The file is available at [Leaflet Search Control](https://opengeo.tech/maps/leaflet-search/)
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+Please ensure to run the separate Back-End Server to run the webpage. The link is available [here](https://github.com/Eicot/Assignment2/tree/main).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- IMAGES & URLS -->
-
-[project-screenshot]: images/population1.jpg
-[geojsonio]: images/geojsonio.png
-[leaflet-url]: https://leafletjs.com
-[ApexCharts-url]: https://apexcharts.com
-[Axios-url]: https://apexcharts.com
+<!-- URLS -->
+[vuejs-url]: https://vuejs.org
+[mongodb-url]: https://www.mongodb.com
+[Axios-url]: https://axios-http.com
 [Bootstrap-url]:https://getbootstrap.com
+[Expressjs-url]: https://expressjs.com
 
 
 
