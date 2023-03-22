@@ -27,7 +27,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#references">REFERENCES</a></li>
+    <li><a href="#project-setup">Project Setup</a></li>
   </ol>
 </details>
 
@@ -35,8 +35,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Project Introduction
 
-[![Product Name Screen Shot][project-screenshot]](https://assignment1-eicot)
-
+[Web Page Link](https://assignment2-front-end) </br>
 The MOTO Land website is created for motorcycle enthusiasts to provide valuable information of various motorcycles. With so many different models and types of motorcycles available, it can be overwhelming for someone who is looking to purchase one. </br>
 With the website that offers detailed and honest reviews of various motorcycles can help consumers make informed decisions about which model is right for them. Additionally, motorcycle enthusiasts often enjoy reading reviews to learn about the latest trends and features in the industry. </br>
 The website can also be a great platform for connecting with like-minded individuals and building a community of motorcycle enthusiasts. By sharing your experiences and knowledge about different models, you can help others make informed decisions and foster a sense of camaraderie within the motorcycle community. </br>
@@ -292,46 +291,55 @@ CRUD stands for Create, Read, Update, and Delete, which are the basic functions 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-  [Web Page Link](https://assignment1-eicot.eicot.repl.co)
-  ![screenshot](images/screenshot.png)
-  In this view, the base layers are divided into default view, terrain view and night view, and it is displayed at right top of the map. Search button is placed on the left top and can be used to search Sub Zones name in Singapore. It will direct to the location and zoom it in the center of the map. 
+  [Web Page Link](https://assignment2-front-end)
   
-  ![screenshot](images/screenshot1.png)
-In this plot view, overlay layers are shown as below:
+  The MOTO Land motorcycle review website is categorised into 4 parts:
+   1. Home Page: This is the main page of the website and contains an overview of the website's content and purpose. The home page features a selection of the most popular motorcycle models and have links to the other pages of the website.
+   <img width="1111" alt="homepage" src="https://user-images.githubusercontent.com/108671817/226785347-fce60c47-10b0-4f14-8802-5a42a4d0aa90.png">
 
-  * Overall Resident Population
-  * Female Resident Population
-  * Male Resident Population
-  * Resident Population Aged Below 5 Years
-  * Resident Population Aged 65 Years and Over
-  * Resident Population Staying in HDB Flats
-  * Resident Population Staying in Condominium
-  * Resident Population Staying in Landed Properties
+   2. Detailed Specification Page: This page contains in-depth technical specifications of a particular motorcycle model. It includes details such as the engine type, displacement, horsepower, torque, transmission, fuel system, suspension, brakes, wheels and tires, dimensions, weight, and more. The page also includes photo of the motorcycle along with user reviews, edit and delete button.
+   <img width="1111" alt="detailspage" src="https://user-images.githubusercontent.com/108671817/226785805-54d625a7-587a-4a36-bcb2-5c1e9cfb420e.png">
 
-Lastly, the markers layer for sub zones is added to location the center of the zones. By viewing the above layers, user will be able to clearly identify the most populated area and the least area based on gender, ages and type of residence. Additionally, the Legend on the right bottom will state the number of people staing in sub zones based on coloring.
 
-There are also three sections to choose Chart options on right top of web page:
+   3. Edit Page: This page allows user to modify the content of the website, such as adding or editing motorcycle technical information and specification. The edit page also includes a form for entering new content, as well as options for adding images, and more.
+   <img width="1111" alt="editpage" src="https://user-images.githubusercontent.com/108671817/226786183-69145aa3-eb5a-4e68-bc07-37f3c69d1035.png">
 
-  1. Population (1960 - 2021): It provides tracking information of total population, female/male population and population ages 0-14, 15-64 and 65+ from 1960 to 2021
-  2. Population Rate (1960 - 2021): Similarly, it shows annual population growth and trend of birth rate, fertility rate and death rate
-  3. Overview: It illustrates clear view of recent overall population and annual growth rate showing constant growth from 2012 to 2020 and declined in 2021.
+
+   4. Add New Page: This page is similar to the Edit Page, but instead of modifying existing content, it allows users to add new content to the website. Users is able to submit their own motorcycle technical specification.
+  <img width="1111" alt="addpage" src="https://user-images.githubusercontent.com/108671817/226786494-6ca6772c-0976-4b27-bec4-119ff623ed27.png">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- REFERENCES -->
-## REFERENCES
+<!-- Project Setup -->
+## Project Setup
+```
+npm install
+```
 
-* Provides Animated Marker Clustering functionality for Leaflet, a JS library for interactive maps.The file is available at [Leaflet Marker Cluster](https://github.com/Leaflet/Leaflet.markercluster)
-* A Leaflet control that search markers/features location by custom property. The file is available at [Leaflet Search Control](https://opengeo.tech/maps/leaflet-search/)
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+Please ensure to run the separate Back-End Server to run the webpage. The link is available [here](https://github.com/Eicot/Assignment2/tree/main).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- IMAGES & URLS -->
-
-[project-screenshot]: images/population1.jpg
-[geojsonio]: images/geojsonio.png
+<!-- URLS -->
 [vuejs-url]: https://vuejs.org
 [mongodb-url]: https://www.mongodb.com
 [Axios-url]: https://axios-http.com
